@@ -1,0 +1,141 @@
+<!-- Header and Bootstrap Popup Modal -->
+
+
+
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid"style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+        <div class="col">
+            <a class="navbar-brand" >EMPLOYEE CRUD</a>
+            <button class="btn btn-primary" (click)="open()" routerLinkActive="active" *ngIf="isAuthenticated">New<i
+                    class="bi bi-plus-circle"></i></button>
+        </div>
+
+        <div class="d-flex">
+            <button class="btn btn-outline-light me-2" (click)="onLogout()" *ngIf="isAuthenticated">LogOut</button>
+        </div>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+            <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+            <form [formGroup]='empform' (ngSubmit)="onSave(userId)">
+                <div style="max-height: 500px; overflow-y: auto;">
+                    <div class="mb-3">
+                        <label>ID</label>
+                        <div class="input-group">
+                            <input name="id" class="form-control" formControlName="id">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Name</label>
+                        <div class="input-group">
+                            <input name="name" class="form-control" formControlName="name">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label>Email</label>
+                        <div class="input-group">
+                            <input name="email" class="form-control" formControlName="email">
+                        </div>
+                        <!-- <span *ngIf="email && email.invalid" class="errormessage" style="color: red;">Please Enter valid Email</span> -->
+                    </div>
+                    <div class="mb-3">
+                        <label>Phone</label>
+                        <div class="input-group">
+                            <input name="phone" class="form-control" formControlName="phone">
+                        </div>
+                        <!-- <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span> -->
+                    </div>
+                    <div class="mb-3">
+                        <label>Designation</label>
+                        <div class="input-group">
+                            <input name="designation" class="form-control" formControlName="designation">
+                        </div>
+                        <!-- <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span> -->
+                    </div>
+                    <div class="mb-3">
+                        <label>Years of Experience</label>
+                        <div class="input-group">
+                            <input name="yearsofexp" class="form-control" formControlName="yearsofexp">
+                        </div>
+                        <!-- <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span> -->
+                    </div>
+                    <div class="mb-3">
+                        <label>Reports To</label>
+                        <div class="input-group">
+                            <input name="manager" class="form-control" formControlName="manager">
+                        </div>
+                        <!-- <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span> -->
+                    </div>
+                    <div class="mb-3">
+                        <label>Skills</label>
+                        <div class="input-group">
+                            <input name="skills" class="form-control" formControlName="skills">
+                        </div>
+                        <!-- <span *ngIf="name && name.invalid" class="errormessage">Please Enter valid name</span> -->
+                    </div>
+                </div>
+                <div class="modal-footer" style="position: sticky;"style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">
+                    <button class="button btn btn-success" type="submit" (click)="modal.close('Save click')"
+                        [disabled]="!empform.valid">{{ editMode
+                        ? "Update": "Save" }}</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </ng-template>
+</nav>
+
+<body class="login-page">
+    <hr>
+    <!-- Table -->
+    <div class="container-fluid table-responsive" *ngIf="isAuthenticated">
+        <div class="text-center p-2 d-flex justify-content-between align-items-center">
+            <h3 class="text-white" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Employee Table</h3>
+            <div *ngIf="searchResultsCount > 0 && searchId.trim() !== ''" class="md-3" style="font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"><strong>{{ searchResultsCount }} Results found</strong></div>
+            <div class="d-flex">
+                
+                <input type="text" class="form-control me-2" placeholder="Search" [(ngModel)]="searchId"
+                    (input)="fetchAllEmployees()">
+                <button class="btn btn-success" (click)="searchEmployee()"><i class="bi bi-search"></i></button>
+            </div>
+        </div>
+        <table class="table custom-table table-responsive table-striped" >
+            <thead class="custom-head">
+                <tr>
+                    <th>Sr No.</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Designation</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let emp of employee; let i =index" (mouseenter)="showViewButton(i)"
+                    (mouseleave)="hideViewButton()">
+                    <td>
+                        {{ i + 1 }}
+                        <button *ngIf="isViewButtonVisible && hoveredRowIndex === i"
+                            class="btn  btn-outline-success position-absolute custom-button transparent-bg" (click)="onView(emp)"><i
+                                class="bi bi-arrows-angle-expand"></i></button>
+                    </td>
+                    <td>{{emp.id}}</td>
+                    <td>{{emp.name}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>{{emp.phone}}</td>
+                    <td>{{emp.designation}}</td>
+                    <td><a class="btn edit-button" (click)="onEdit(emp.userId, i)"><i class="bi bi-pencil"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>

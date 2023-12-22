@@ -1,0 +1,46 @@
+<div>
+    <h4>Employee Details</h4>
+
+    <div>
+        <label>ID:</label>
+        <span>{{ employee.id }}</span>
+    </div>
+
+    <div>
+        <label>Name:</label>
+        <span>{{ employee.name }}</span>
+    </div>
+
+    <div>
+        <label>Email:</label>
+        <span>{{ employee.email }}</span>
+    </div>
+
+    <div>
+        <label>Phone:</label>
+        <span>{{ employee.phone }}</span>
+    </div>
+
+    <div>
+        <label>Designation:</label>
+        <span>{{ employee.designation }}</span>
+    </div>
+
+    <div>
+        <label>Years of Experience:</label>
+        <span>{{ employee.yearsofexp }}</span>
+    </div>
+
+    <div>
+        <label>Reports To:</label>
+        <span>{{ employee.manager }}</span>
+    </div>
+
+    <div>
+        <label>Skills:</label>
+        <span>{{ employee.skills }}</span>
+    </div>
+
+    <button class="btn btn-danger" (click)="onDelete(employee.userId)">Delete</button>
+    <!--  -->
+</div>

@@ -1,0 +1,156 @@
+// html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(120deg, #2980b9, #8e44ad);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    color: #fff;
+    /* Set text color to white */
+}
+
+.text-center {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+    position: sticky;
+    top: 0;
+    background-color: #0a47a8;
+    padding: 20px;
+}
+
+body.login-page {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.container {
+    height: 100%;
+    overflow: auto;
+}
+.table {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.table.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0 0 10px 10px;
+    /* Only top corners are curved */
+    overflow: hidden;
+}
+
+
+.btn-primary {
+    // font-size: 15px;
+    background-color: rgb(90, 237, 32); 
+    // color: white; 
+    border: 2px solid #65dd32;
+    // padding-top: 2.5px;
+    // padding-bottom: 0.5px;
+    // padding-left: 2.5px;
+    // padding-right: 0.5px;
+}
+
+.btn-primary:hover {
+    background-color: #67ff2c;
+    color: black;
+  }
+      
+ 
+.table-container {
+    background-color: #ffffff;
+    /* Add the background color for the table */
+    padding: 20px;
+    /* Add padding as needed */
+    border-radius: 10px;
+    /* Add border-radius for rounded corners */
+    margin: 20px;
+    /* Add margin as needed */
+}
+
+.table {
+    border-radius: 20px;
+}
+
+.position-absolute {
+    position: absolute;
+}
+
+transparent-bg {
+    background-color: transparent !important;
+}
+
+.custom-button {
+    // padding: 2.5px;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;
+    padding-left: 2.5px;
+    padding-right: 2.5px;
+    /* Adjust the padding to control the button size */
+    // margin-top: 0.5px;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    /* Add left margin to push the button away from the number */
+}
+
+
+
+
+
+.custom-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 10px;
+    /* Adjust the radius as needed */
+    overflow: hidden;
+}
+
+.custom-table th,
+.custom-table td {
+
+    border: 1px solid #dee2e6;
+    /* You can customize the border color */
+}
+
+.custom-table th {
+    background-color: skyblue;
+    /* Add your desired background color here */
+    color: black;
+    /* Set the text color for better visibility */
+}
+
+.custom-button tr:nth-child(even) {
+    background-color: rgb(203, 203, 252);
+}
+
+.edit-button {
+    background-color: #e6c2f5;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+}
+.table-responsive {
+  overflow-y: auto;
+  max-height: calc(100vh - 56px);
+}
+.container-fluid.table-responsive{
+    padding-left: 60px;
+    padding-right: 60px;
+}
+
+.custom-table th,
+.custom-table td {
+    border: 1px solid #dee2e6;
+    text-align: center;
+    /* Center text horizontally in table cells */
+    vertical-align: middle;
+    /* Center text vertically in table cells */
+}
